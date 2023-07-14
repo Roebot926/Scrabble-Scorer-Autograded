@@ -32,51 +32,52 @@ function oldScrabbleScorer(word) {
 // your job is to finish writing these functions and variables that we've named //
 // don't change the names or your program won't work as expected. //
 
-function initialPrompt(str) {
-  
-   str = input.question("Let's play some scrabble! \nEnter a word to score: ");
-  
-   return simpleScorer(str)
-}
+function initialPrompt() {
+   console.log("Let's play some Scrabble!");
+
+   let userInput = input.question('Please enter a word to score: ');
+   console.log(vowelBonusScorer(userInput));
+  return userInput
+
+};
 
 let simpleScorer = function(str){
    str = str.toUpperCase();
-   let letterPoints = "";
-   let points = 1;
+   let letterPoints = '';
+   let points = 1
 
-   for (let i = 0; i < str.length; i++) {
-      
-      for (const pointValue in oldPointStructure) {
-
-         if (oldPointStructure[pointValue].includes(str[i])){
-            letterPoints += `Points for '${str[i]}': ${points}\n`  
+   for (let i=0; i<str.length; i++){
+      for (const pointValue in oldPointStructure){
+         if(oldPointStructure[pointValue].includes(str[i])){
+            letterPoints += `Points for ${str[i]}: ${points}\n`
          }
       }
    }
-   return letterPoints;
-}
+   return letterPoints
+};
+
 
 let vowelBonusScorer = function(str){
    str = str.toUpperCase();
    let letterPoints = "";
+   let vowels = ['a','e','i','o','u','y'];
    let points = 1;
-   let vowelBonus = "";
+   let vowelBonus = 0;
 
       for (let i = 0; i<str.length; i++) {
 
          for (const pointValue in oldPointStructure){
             if(oldPointStructure[pointValue].includes(str[i])){
-               if (str[i] === 'a' || str[i] === 'e' || str[i] === 'i' || str[i] === 'o' || str[i] === 'u' || str[i]==='y'){
-                  vowelBonus = str[i]*3;
+               if (str[i] === vowels[i]){
+                  vowelBonus += str[i]*3;
+               }
+                  
                }
             }
             letterPoints += `Points for '${str[i]}': ${points} | Bonus Vowel: ${vowelBonus} \n`;
          }
          return letterPoints
       }
-}
-
-// console.log(initialPrompt());
 
 let scrabbleScorer;
 
