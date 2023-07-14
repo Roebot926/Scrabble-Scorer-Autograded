@@ -16,7 +16,7 @@ function oldScrabbleScorer(word) {
 	word = word.toUpperCase();
 	let letterPoints = "";
  
-	for (let i = 0; i < word.length; i++) {
+	for (let i = 0; i <= word.length; i++) {
  
 	  for (const pointValue in oldPointStructure) {
  
@@ -32,13 +32,52 @@ function oldScrabbleScorer(word) {
 // your job is to finish writing these functions and variables that we've named //
 // don't change the names or your program won't work as expected. //
 
-function initialPrompt() {
-   console.log("Let's play some scrabble! Enter a word:");
-};
+function initialPrompt(str) {
+  
+   str = input.question("Let's play some scrabble! \nEnter a word to score: ");
+  
+   return vowelBonusScorer(str)
+}
 
-let simpleScorer;
+let simpleScorer = function(str){
+   str = str.toUpperCase();
+   let letterPoints = "";
+   let points = 1;
 
-let vowelBonusScorer;
+   for (let i = 0; i < str.length; i++) {
+      
+      for (const pointValue in oldPointStructure) {
+
+         if (oldPointStructure[pointValue].includes(str[i])){
+            letterPoints += `Points for '${str[i]}': ${points}\n`  
+         }
+      }
+   }
+   return letterPoints;
+}
+// console.log(initialPrompt());
+
+let vowelBonusScorer = function(str){
+   str = str.toUpperCase();
+   let letterPoints = "";
+   let points = 1;
+   let vowelBonus = "";
+
+      for (let i = 0; i<str.length; i++) {
+
+         for (const pointValue in oldPointStructure){
+            if(oldPointStructure[pointValue].includes(str[i])){
+               if (str[i] === 'a' || str[i] === 'e' || str[i] === 'i' || str[i] === 'o' || str[i] === 'u' || str[i]==='y'){
+                  vowelBonus = str[i]*3;
+               }
+            }
+            letterPoints += `Points for '${str[i]}': ${points} | Bonus Vowel: ${vowelBonus} \n`;
+         }
+         return letterPoints
+      }
+}
+
+console.log(initialPrompt());
 
 let scrabbleScorer;
 
@@ -54,7 +93,6 @@ function runProgram() {
    initialPrompt();
    
 }
-
 // Don't write any code below this line //
 // And don't change these or your program will not run as expected //
 module.exports = {
@@ -68,4 +106,4 @@ module.exports = {
    newPointStructure: newPointStructure,
 	runProgram: runProgram,
 	scorerPrompt: scorerPrompt
-};
+}
