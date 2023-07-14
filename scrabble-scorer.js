@@ -36,7 +36,7 @@ function initialPrompt(str) {
   
    str = input.question("Let's play some scrabble! \nEnter a word to score: ");
   
-   return vowelBonusScorer(str)
+   return simpleScorer(str)
 }
 
 let simpleScorer = function(str){
@@ -57,27 +57,27 @@ let simpleScorer = function(str){
 }
 // console.log(initialPrompt());
 
-let vowelBonusScorer = function(str){
-   str = str.toUpperCase();
-   let letterPoints = "";
-   let points = 1;
-   let vowelBonus = "";
+// let vowelBonusScorer = function(str){
+//    str = str.toUpperCase();
+//    let letterPoints = "";
+//    let points = 1;
+//    let vowelBonus = "";
 
-      for (let i = 0; i<str.length; i++) {
+//       for (let i = 0; i<str.length; i++) {
 
-         for (const pointValue in oldPointStructure){
-            if(oldPointStructure[pointValue].includes(str[i])){
-               if (str[i] === 'a' || str[i] === 'e' || str[i] === 'i' || str[i] === 'o' || str[i] === 'u' || str[i]==='y'){
-                  vowelBonus = str[i]*3;
-               }
-            }
-            letterPoints += `Points for '${str[i]}': ${points} | Bonus Vowel: ${vowelBonus} \n`;
-         }
-         return letterPoints
-      }
-}
+//          for (const pointValue in oldPointStructure){
+//             if(oldPointStructure[pointValue].includes(str[i])){
+//                if (str[i] === 'a' || str[i] === 'e' || str[i] === 'i' || str[i] === 'o' || str[i] === 'u' || str[i]==='y'){
+//                   vowelBonus = str[i]*3;
+//                }
+//             }
+//             letterPoints += `Points for '${str[i]}': ${points} | Bonus Vowel: ${vowelBonus} \n`;
+//          }
+//          return letterPoints
+//       }
+// }
 
-console.log(initialPrompt());
+// console.log(initialPrompt());
 
 let scrabbleScorer;
 
