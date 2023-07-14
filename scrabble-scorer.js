@@ -34,9 +34,9 @@ function oldScrabbleScorer(word) {
 
 function initialPrompt(str) {
   
-   // str = input.question("Let's play some scrabble! \nEnter a word to score: ");
+   str = input.question("Let's play some scrabble! \nEnter a word to score: ");
   
-   // return simpleScorer(str)
+   return simpleScorer(str)
 }
 
 let simpleScorer = function(str){
@@ -55,7 +55,6 @@ let simpleScorer = function(str){
    }
    return letterPoints;
 }
-console.log(initialPrompt());
 
 let vowelBonusScorer = function(str){
    str = str.toUpperCase();
