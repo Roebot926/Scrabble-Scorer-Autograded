@@ -65,7 +65,7 @@ let vowelBonusScorer = function(word){
          consonantScore += 1;
       }
    }
-   return `Your Consonants Scored: ${consonantScore}   Your Vowel Bonus: ${vowelScore}   Total = ${vowelScore+consonantScore}`
+   return vowelScore
 }
 
 let scrabbleScorer;
