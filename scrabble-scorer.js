@@ -48,7 +48,7 @@ let simpleScorer = function(str){
    for (let i = 0; i < str.length; i++){
       score++ 
    }
-   return `You scored: ${score}`;
+   return score;
 }
 
 
@@ -121,7 +121,7 @@ function transform(oldScorer) {
       letterScore = oldScorer[key];
 
       for(i=0; i<letterScore.length;i++){
-         newScorer[letterScore[i]] = key;                
+         newScorer[letterScore[i].toLowerCase()] = Number(key);                
       }  
        
    }
