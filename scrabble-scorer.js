@@ -55,17 +55,17 @@ let simpleScorer = function(str){
 let vowelBonusScorer = function(word){
    word = word.toUpperCase(word);
    let vowels = ['A','E','I','O','U', 'Y'];
-   let vowelScore = 0;
-   let consonantScore = 0
+   let score = 0;
+
 
    for (let i=0; i<word.length; i++){
       if(vowels.includes(word[i])){
-         vowelScore += 3;
+         score += 3;
       } else{
-         consonantScore += 1;
+         score += 1;
       }
    }
-   return vowelScore
+   return score;
 }
 
 let scrabbleScorer;
@@ -74,17 +74,17 @@ const scoringAlgorithms = [
    {
    Name: "Simple Scorer.",
    Description: "Each letter is worth 1 point.",
-   ScoreFunction: simpleScorer,
+   scorerFunction: simpleScorer,
 },
 {
    Name: "Bonus Vowels",
    Decription: 'Vowels are 3 pts, consonants are 1 pt.',
-   ScoreFunction: vowelBonusScorer,
+   scorerFunction: vowelBonusScorer,
 },
 {
    Name: "Original Scrabble",
    Description: "The traditional scoring algorithm.",
-   ScoreFunction: oldScrabbleScorer,
+   scorerFunction: oldScrabbleScorer,
 }
 
 ];
@@ -102,13 +102,13 @@ Which scoring algorithm would you like to use?
    
       if (userInput === 0){
          console.log('You chose: ',scoringAlgorithms[0].Name);
-         console.log(scoringAlgorithms[0].ScoreFunction(word)); 
+         console.log(scoringAlgorithms[0].scorerFunction(word)); 
       } else if (userInput === 1){
          console.log('You chose: ',scoringAlgorithms[1].Name);
-         console.log(scoringAlgorithms[1].ScoreFunction(word));
+         console.log(scoringAlgorithms[1].scorerFunction(word));
       } else if (userInput === 2){
          console.log('You chose: ',scoringAlgorithms[2].Name);
-         console.log(scoringAlgorithms[2].ScoreFunction(word));
+         console.log(scoringAlgorithms[2].scorerFunction(word));
       } else{
          scorerPrompt();
       }
