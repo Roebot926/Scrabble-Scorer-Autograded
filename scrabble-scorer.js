@@ -27,10 +27,8 @@ function oldScrabbleScorer(word) {
 	  }
 	}
 	return letterPoints;
- }
+ };
 
-// your job is to finish writing these functions and variables that we've named //
-// don't change the names or your program won't work as expected. //
 
 function initialPrompt() {
    console.log(dashes);
@@ -38,7 +36,7 @@ function initialPrompt() {
    console.log(`${dashes}\n`);
 
    let userInput = input.question('Please enter a word to score: ');
-   // console.log(oldScrabbleScorer(userInput));
+   // console.log(scrabbleScorer(userInput));
   return userInput
 };
 
@@ -48,7 +46,7 @@ let simpleScorer = function(str){
    for (let i = 0; i < str.length; i++){
       score++ 
    }
-   return score;
+   return `Your Score: ${score}`;
 }
 
 
@@ -68,7 +66,22 @@ let vowelBonusScorer = function(word){
    return score;
 }
 
-let scrabbleScorer;
+
+let scrabbleScorer = function(score){
+   score = score.toLowerCase()
+   let totalPoints = 0;
+
+   for (let i=0; i< score.length-1; i++){
+
+      for(const pointValue in newPointStructure){
+         if (newPointStructure[pointValue].includes(score[i])){
+         totalPoints+=newPointStructure();
+      }
+      return totalPoints
+    }
+   }
+
+}
 
 const scoringAlgorithms = [
    {
@@ -84,7 +97,7 @@ const scoringAlgorithms = [
 {
    Name: "Original Scrabble",
    Description: "The traditional scoring algorithm.",
-   scorerFunction: oldScrabbleScorer,
+   scorerFunction: scrabbleScorer,
 }
 
 ];
@@ -120,13 +133,13 @@ function transform(oldScorer) {
    for(const key in oldScorer) {
       letterScore = oldScorer[key];
 
-      for(i=0; i<letterScore.length;i++){
+      for(let i = 0; i<letterScore.length;i++){
          newScorer[letterScore[i].toLowerCase()] = Number(key);                
       }  
        
    }
    return newScorer
-}
+};
 
 let newPointStructure = transform(oldPointStructure);
 
@@ -134,7 +147,7 @@ let newPointStructure = transform(oldPointStructure);
 function runProgram() {
    let userInput = initialPrompt();
    scorerPrompt(userInput);
-}
+};
 // Don't write any code below this line //
 // And don't change these or your program will not run as expected //
 module.exports = {
