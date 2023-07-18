@@ -46,7 +46,7 @@ let simpleScorer = function(str){
    for (let i = 0; i < str.length; i++){
       score++ 
    }
-   return `Your Score: ${score}`;
+   return console.log("Your Score: ",score);
 }
 
 
@@ -63,7 +63,7 @@ let vowelBonusScorer = function(word){
          score += 1;
       }
    }
-   return score;
+   return console.log("Your Score: ",score);
 }
 
 
@@ -80,7 +80,6 @@ let scrabbleScorer = function(score){
       return totalPoints
     }
    }
-
 }
 
 const scoringAlgorithms = [
