@@ -46,7 +46,7 @@ let simpleScorer = function(str){
    for (let i = 0; i < str.length; i++){
       score++ 
    }
-   return console.log("Your Score: ",score);
+   return score;
 }
 
 
@@ -63,7 +63,7 @@ let vowelBonusScorer = function(word){
          score += 1;
       }
    }
-   return console.log("Your Score: ",score);
+   return score;
 }
 
 
@@ -71,16 +71,19 @@ let scrabbleScorer = function(score){
    score = score.toLowerCase()
    let totalPoints = 0;
 
-   for (let i=0; i< score.length-1; i++){
+   for (let i = 0; i < score.length; i++){
 
-      for(const pointValue in newPointStructure){
-         if (newPointStructure[pointValue].includes(score[i])){
-         totalPoints+=newPointStructure();
+      for (pointValue in newPointStructure){
+         if(score[i] === pointValue){
+            totalPoints += newPointStructure[pointValue];
+         }else if (score[i] === ' ')
+         totalPoints += 0;
       }
-      return totalPoints
-    }
    }
+   return totalPoints
 }
+
+
 
 const scoringAlgorithms = [
    {
@@ -114,13 +117,13 @@ Which scoring algorithm would you like to use?
    
       if (userInput === 0){
          console.log('You chose: ',scoringAlgorithms[0].Name);
-         console.log(scoringAlgorithms[0].scorerFunction(word)); 
+         console.log(`Your Score: ${scoringAlgorithms[0].scorerFunction(word)}`);
       } else if (userInput === 1){
          console.log('You chose: ',scoringAlgorithms[1].Name);
-         console.log(scoringAlgorithms[1].scorerFunction(word));
+         console.log(`Your Score: ${scoringAlgorithms[1].scorerFunction(word)}`);
       } else if (userInput === 2){
          console.log('You chose: ',scoringAlgorithms[2].Name);
-         console.log(scoringAlgorithms[2].scorerFunction(word));
+         console.log(`Your Score: ${scoringAlgorithms[2].scorerFunction(word)}`);
       } else{
          scorerPrompt();
       }
